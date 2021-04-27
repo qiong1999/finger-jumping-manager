@@ -15,14 +15,15 @@ router.post("/register", (req, res) => {
             if(user) {
                 return res.status(400).json("邮箱已被注册！")
             } else {
+                console.log(req.body)
             const newUser = new User({
-                name: req.body.name,
+                username: req.body.username,
                 email: req.body.email,
                 password: req.body.password
             })
             newUser.save()
-                    .then(user => res.json({user}))
-                    .then(err => console.log(err))
+                    .then(user => res.status(200).json({user}))
+                    .then(err =>{})
             }
         })
 })
